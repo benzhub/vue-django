@@ -1,0 +1,42 @@
+version: "3.7"
+services:
+  python-api:
+    build:
+      context: .
+    image: alpine-python:latest
+    command: ["tail", "-f", "/dev/null"]
+    ports:
+      - "8080:80"
+    volumes:
+      - ./workspace:/home/workspace
+    depends_on:
+      - postgres
+    # links:
+    #   - laravel-mysql:database
+    # networks:
+    #   - network_sql
+
+  postgres:
+    image: postgres:latest
+    environment:
+      - POSTGRES_PASSWORD=secret
+    volumes:
+      - ./db:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+  # laravel-mysql:
+  #   image: mariadb:latest
+  #   environment:
+  #     - MYSQL_ROOT_PASSWORD=secret
+  #   ports:
+  #     - "13306:3306"
+  #   volumes:
+  #     - ${DEFAULT_PATH}:/var/lib/mysql
+    # networks:
+    #   - network_sql
+
+# networks:
+#   network_sql:
+#     driver: bridge
+    
