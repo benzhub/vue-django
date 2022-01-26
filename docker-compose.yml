@@ -8,35 +8,25 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./workspace:/home/workspace
+      - ./backend/workspace:/home
     depends_on:
       - postgres
-    # links:
-    #   - laravel-mysql:database
-    # networks:
-    #   - network_sql
 
   postgres:
     image: postgres:latest
     environment:
       - POSTGRES_PASSWORD=secret
     volumes:
-      - ./db:/var/lib/postgresql/data
+      - ./backend/db:/var/lib/postgresql/data
     ports:
       - "5432:5432"
 
-  # laravel-mysql:
-  #   image: mariadb:latest
-  #   environment:
-  #     - MYSQL_ROOT_PASSWORD=secret
-  #   ports:
-  #     - "13306:3306"
-  #   volumes:
-  #     - ${DEFAULT_PATH}:/var/lib/mysql
-    # networks:
-    #   - network_sql
-
-# networks:
-#   network_sql:
-#     driver: bridge
-    
+  vue:
+    build:
+      context: .
+    image: alpine-vue:latest
+    command: ["tail", "-f", "/dev/null"]
+    ports:
+      - "8081:8080"
+    volumes:
+      - ./frontend/workspace:/home
