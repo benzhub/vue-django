@@ -10,7 +10,8 @@ services:
     volumes:
       - ./frontend/workspace:/home
     networks:
-      - network_sql1
+      network_sql1:
+        ipv4_address: 172.30.0.2
 
   python-api:
     build:
@@ -24,7 +25,8 @@ services:
     depends_on:
       - postgres
     networks:
-      - network_sql2
+      network_sql2:
+        ipv4_address: 172.31.0.2
 
   postgres:
     image: postgres:latest
@@ -35,11 +37,23 @@ services:
     ports:
       - "5432:5432"
     networks:
-      - network_sql2
+      network_sql2:
+        ipv4_address: 172.31.0.3
 
 networks:
   network_sql1:
     driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.30.0.0/16
+          gateway: 172.30.0.1
+
 
   network_sql2:
     driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.31.0.0/16
+          gateway: 172.31.0.1

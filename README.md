@@ -3,6 +3,8 @@ https://www.bilibili.com/video/BV1tK4y1R7YZ?from=search&seid=1120447202198304474
 # linux install pgadmin4
 https://stackoverflow.com/questions/68777587/solved-linux-mint-20-x-ubuntu-based-cant-install-pgadmin4
 
+https://askubuntu.com/questions/831262/how-to-install-pgadmin-4-in-desktop-mode-on-ubuntu
+
 ```bash
 #
 # Setup the repository
@@ -40,4 +42,10 @@ sudo docker build -t alpine-python --no-cache --build-arg ENV_NAME=test .
 # 啟動docker-compose
 ```bash
 sudo docker-compose up -d
+```
+
+# Vue Container
+```bash
+npm install axios
+npm install bulma
 ```

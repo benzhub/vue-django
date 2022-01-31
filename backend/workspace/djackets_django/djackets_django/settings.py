@@ -94,7 +94,7 @@ DATABASES = {
         'NAME': 'vue-django',  #資料庫名稱
         'USER': 'postgres',  #資料庫帳號
         'PASSWORD': 'secret',  #資料庫密碼
-        'HOST': '172.19.0.2',  #Server(伺服器)位址
+        'HOST': '172.31.0.3',  #Server(伺服器)位址
         'PORT': '5432'  #PostgreSQL Port號
     }
 }
