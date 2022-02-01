@@ -3,7 +3,7 @@ services:
   vue:
     build:
       context: .
-    image: alpine-vue:latest
+    image: vue:latest
     command: ["tail", "-f", "/dev/null"]
     ports:
       - "8081:8080"
@@ -11,12 +11,12 @@ services:
       - ./frontend/workspace:/home
     networks:
       network_sql1:
-        ipv4_address: 172.30.0.2
+        ipv4_address: 172.20.0.2
 
   python-api:
     build:
       context: .
-    image: alpine-python:latest
+    image: django:latest
     command: ["tail", "-f", "/dev/null"]
     ports:
       - "8080:80"
@@ -26,7 +26,7 @@ services:
       - postgres
     networks:
       network_sql2:
-        ipv4_address: 172.31.0.2
+        ipv4_address: 172.21.0.2
 
   postgres:
     image: postgres:latest
@@ -38,7 +38,7 @@ services:
       - "5432:5432"
     networks:
       network_sql2:
-        ipv4_address: 172.31.0.3
+        ipv4_address: 172.21.0.3
 
 networks:
   network_sql1:
@@ -46,8 +46,8 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 172.30.0.0/16
-          gateway: 172.30.0.1
+        - subnet: 172.20.0.0/16
+          # gateway: "172.20.0.1"
 
 
   network_sql2:
@@ -55,5 +55,5 @@ networks:
     ipam:
       driver: default
       config:
-        - subnet: 172.31.0.0/16
-          gateway: 172.31.0.1
+        - subnet: 172.21.0.0/16
+          # gateway: "172.21.0.1"

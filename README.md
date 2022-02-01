@@ -36,7 +36,7 @@ sudo /usr/pgadmin4/bin/setup-web.sh
 
 # 製作docker image
 ```bash
-sudo docker build -t alpine-python --no-cache --build-arg ENV_NAME=test .
+sudo docker build -t django --no-cache --build-arg ENV_NAME=django .
 ```
 
 # 啟動docker-compose

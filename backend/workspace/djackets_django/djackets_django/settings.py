@@ -30,6 +30,7 @@ ALLOWED_HOSTS = ['*']
 runserver.default_port = '80'        # <-- Your port
 runserver.default_addr = '0.0.0.0'   # <-- Your address
 
+STRIPE_SECRET_KEY = '.....'
 
 # Application definition
 
@@ -45,11 +46,22 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'corsheaders',
     'djoser',
+    'product',
+    'order',
 ]
 
+#單一個配置
+CORS_ORIGIN_WHITELIST  =(
+    'http://localhost:8081',
+)
+
+# 直接允许所有主机跨域
 CORS_ALLOWed_ORIGINS = [
-    "http://localhost:8081",
+    'http://localhost:8081',
 ]
+
+CORS_ORIGIN_ALLOW_ALL = True 
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -94,7 +106,7 @@ DATABASES = {
         'NAME': 'vue-django',  #資料庫名稱
         'USER': 'postgres',  #資料庫帳號
         'PASSWORD': 'secret',  #資料庫密碼
-        'HOST': '172.31.0.3',  #Server(伺服器)位址
+        'HOST': '172.21.0.3',  #Server(伺服器)位址
         'PORT': '5432'  #PostgreSQL Port號
     }
 }
@@ -140,3 +152,6 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = BASE_DIR / 'media/'
